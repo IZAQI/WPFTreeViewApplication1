@@ -16,14 +16,18 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type ToggleButton}">
+            <Setter Property="Visibility" Value="Hidden"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
         <TreeView Margin="5" ItemsSource="{Binding}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   VirtualizingStackPanel.IsVirtualizing="True"
-                  VirtualizingStackPanel.VirtualizationMode="Recycling"
                   >
             <!--
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"
             -->
             <TreeView.Background>
                 <LinearGradientBrush>
@@ -44,10 +48,10 @@
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
                     <!-- ParentItem -->
                     <Border Margin="1" BorderBrush="Brown" Background="AliceBlue" BorderThickness="1" CornerRadius="10">
-                        <StackPanel Margin="2">
-                            <TextBlock Margin="1" Foreground="Blue" Text="{Binding Name}"/>
-                            <TextBlock Margin="1" Foreground="Black" Text="{Binding Path=NickName}"/>
-                            <TextBlock Margin="1" Foreground="Black"  Text="{Binding Path=Population}"/>
+                        <StackPanel Margin="2"  x:Name="ParentStackPanel">
+                            <TextBlock Margin="1" Text="{Binding Name}"/>
+                            <TextBlock Margin="1" Text="{Binding Path=NickName}"/>
+                            <TextBlock Margin="1" Text="{Binding Path=Population}"/>
                         </StackPanel>
                     </Border>
 
@@ -55,14 +59,21 @@
                     <HierarchicalDataTemplate.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="1" BorderBrush="Brown" Background="AliceBlue" BorderThickness="1" CornerRadius="10">
-                                <StackPanel Margin="5">
-                                    <TextBlock Margin="1" Foreground="Blue" Text="{Binding Name}"/>
-                                    <TextBlock Margin="1" Foreground="Black" Text="{Binding Path=Population}"/>
+                                <StackPanel Margin="5" x:Name="ChildStackPanel">
+                                    <TextBlock Margin="1" Text="{Binding Name}"/>
+                                    <TextBlock Margin="1" Text="{Binding Path=Population}"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </HierarchicalDataTemplate.ItemTemplate>
-                    
+
+                    <!-- ChildItem Style-->
+                    <HierarchicalDataTemplate.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </Style>
+                    </HierarchicalDataTemplate.ItemContainerStyle>
+
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
