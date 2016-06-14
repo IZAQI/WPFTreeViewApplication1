@@ -4,14 +4,15 @@
         Title="Horizontal Tree View" Height="400" Width="600">
 
     <Window.Resources>
+        <!-- ChildItem define -->
+        <!-- Horizontal Virtualization failed.-->
         <Style TargetType="{x:Type TreeViewItem}">
-            <!-- ChildItem define -->
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel x:Name="customVPanel1" IsVirtualizing="True" Margin="2" Orientation="Horizontal"/>
-                        <!--VirtualizationMode="Recycling"  
-                        -->
+                        <VirtualizingStackPanel x:Name="customVPanel1" IsVirtualizing="True" Margin="2" Orientation="Horizontal"
+                        VirtualizationMode="Recycling"  
+                                                />
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
@@ -23,12 +24,10 @@
 
     <Grid>
         <TreeView Margin="5" ItemsSource="{Binding}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
                   VirtualizingStackPanel.IsVirtualizing="True"
-                  >
-            <!--
                   VirtualizingStackPanel.VirtualizationMode="Recycling"
-            -->
+                  >
             <TreeView.Background>
                 <LinearGradientBrush>
                     <GradientStop Offset="0" Color="AliceBlue"/>

@@ -89,6 +89,25 @@ namespace WpfTreeViewApplication1
 
             stateList.Add(state3);
 
+            // many object
+            for(int i = 0; i < 500; i++)
+            {
+                List<ChildItem> childList = new List<ChildItem>();
+                childList.Add(new ChildItem("1"));
+                childList.Add(new ChildItem("2"));
+                childList.Add(new ChildItem("3"));
+                childList.Add(new ChildItem("4"));
+
+                ParentItem parent = new ParentItem();
+
+                parent.Name = "1";
+                parent.NickName = "1";
+                parent.Population = 0;
+                parent.Children = childList;
+
+                stateList.Add(parent);
+            }
+
 
             DataContext = stateList;
         }
