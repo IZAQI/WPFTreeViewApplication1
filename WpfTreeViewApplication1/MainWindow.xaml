@@ -16,7 +16,7 @@
 
                     <ItemsPanelTemplate>
 
-                        <StackPanel Margin="2" Orientation="Horizontal"/>
+                        <VirtualizingStackPanel Margin="2" Orientation="Horizontal"/>
 
                     </ItemsPanelTemplate>
 
@@ -30,7 +30,9 @@
 
     <Grid>
 
-        <TreeView Margin="5" ItemsSource="{Binding}">
+        <TreeView Margin="5" ItemsSource="{Binding}"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  >
 
             <TreeView.Background>
 
@@ -48,7 +50,7 @@
 
             <TreeView.ItemTemplate>
 
-                <HierarchicalDataTemplate ItemsSource="{Binding Path=Cities}">
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
 
                     <Border Margin="1" BorderBrush="Brown" Background="AliceBlue" BorderThickness="1" CornerRadius="10">
 

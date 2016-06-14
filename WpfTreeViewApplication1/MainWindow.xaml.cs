@@ -36,153 +36,108 @@ namespace WpfTreeViewApplication1
     /// </summary>
 
     public partial class MainWindow : Window
-
     {
 
-        private List<State> stateList = new List<State>();
-
+        private List<ParentItem> stateList = new List<ParentItem>();
 
         public MainWindow()
-
         {
 
             InitializeComponent();
 
+            List<ChildItem> citylist1 = new List<ChildItem>();
+            citylist1.Add(new ChildItem("Baltimore"));
+            citylist1.Add(new ChildItem("Frederick"));
+            citylist1.Add(new ChildItem("Rockville"));
 
-            List<City> citylist1 = new List<City>();
-
-            citylist1.Add(new City("Baltimore", 636919));
-
-            citylist1.Add(new City("Frederick", 59220));
-
-            citylist1.Add(new City("Rockville", 60734));
-
-            State state1 = new State();
-
+            ParentItem state1 = new ParentItem();
             state1.Name = "Maryland";
-
             state1.NickName = "Old Line State";
-
             state1.Population = 5633597;
-
-            state1.Cities = citylist1;
-
+            state1.Children = citylist1;
 
             stateList.Add(state1);
 
 
-            List<City> citylist2 = new List<City>();
+            List<ChildItem> citylist2 = new List<ChildItem>();
+            citylist2.Add(new ChildItem("Los Angeles"));
+            citylist2.Add(new ChildItem("Sacramento"));
+            citylist2.Add(new ChildItem("San Francisco"));
+            citylist2.Add(new ChildItem("San Diego"));
 
-            citylist2.Add(new City("Los Angeles", 3833995));
-
-            citylist2.Add(new City("Sacramento", 502743));
-
-            citylist2.Add(new City("San Francisco", 808976));
-
-            citylist2.Add(new City("San Diego", 1279329));
-
-            State state2 = new State();
-
+            ParentItem state2 = new ParentItem();
             state2.Name = "California";
-
             state2.NickName = "Golden State";
-
             state2.Population = 36756666;
-
-            state2.Cities = citylist2;
-
+            state2.Children = citylist2;
 
             stateList.Add(state2);
 
 
-            List<City> citylist3 = new List<City>();
+            List<ChildItem> citylist3 = new List<ChildItem>();
+            citylist3.Add(new ChildItem("Houston"));
+            citylist3.Add(new ChildItem("Dallas"));
+            citylist3.Add(new ChildItem("Austin"));
+            citylist3.Add(new ChildItem("San Antonio"));
 
-            citylist3.Add(new City("Houston", 2242193));
-
-            citylist3.Add(new City("Dallas", 1279910));
-
-            citylist3.Add(new City("Austin", 757688));
-
-            citylist3.Add(new City("San Antonio", 1351305));
-
-            State state3 = new State();
+            ParentItem state3 = new ParentItem();
 
             state3.Name = "Taxes";
-
             state3.NickName = "Lone Star State";
-
             state3.Population = 2432697;
-
-            state3.Cities = citylist3;
-
+            state3.Children = citylist3;
 
             stateList.Add(state3);
 
 
             DataContext = stateList;
-
         }
 
     }
 
 
-    public class City
-
+    public class ChildItem
     {
 
-        public City(String name, int population)
-
+        public ChildItem(String name)
         {
-
             Name = name;
-
-            Population = population;
-
+            Population = new Random().Next();
         }
 
 
         public int Population
-
         { get; set; }
 
 
         public String Name
-
         { get; set; }
 
     }
 
 
-    public class State
-
+    public class ParentItem
     {
 
-        public State()
-
+        public ParentItem()
         {
-
-            this.Cities = new List<City>();
-
+            this.Children = new List<ChildItem>();
         }
 
 
         public String Name
-
         { get; set; }
 
 
         public String NickName
-
         { get; set; }
 
 
         public int Population
-
         { get; set; }
 
 
-        public List<City> Cities
-
+        public List<ChildItem> Children
         { get; set; }
 
     }
