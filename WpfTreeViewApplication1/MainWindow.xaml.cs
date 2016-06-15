@@ -97,6 +97,14 @@ namespace WpfTreeViewApplication1
                 childList.Add(new ChildItem("2"));
                 childList.Add(new ChildItem("3"));
                 childList.Add(new ChildItem("4"));
+                childList.Add(new ChildItem("5"));
+                childList.Add(new ChildItem("6"));
+                childList.Add(new ChildItem("7"));
+                childList.Add(new ChildItem("8"));
+                childList.Add(new ChildItem("9"));
+                childList.Add(new ChildItem("10"));
+                childList.Add(new ChildItem("11"));
+                childList.Add(new ChildItem("12"));
 
                 ParentItem parent = new ParentItem();
 

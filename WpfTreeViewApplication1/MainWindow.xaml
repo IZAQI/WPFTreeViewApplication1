@@ -1,6 +1,7 @@
 ﻿<Window x:Class="WpfTreeViewApplication1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vwp="clr-namespace:CodePlex.VirtualizingWrapPanel;assembly=VirtualizingWrapPanel"
         Title="Horizontal Tree View" Height="400" Width="600">
 
     <Window.Resources>
@@ -10,9 +11,19 @@
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel x:Name="customVPanel1" IsVirtualizing="True" Margin="2" Orientation="Horizontal"
+                        <!--
+                        <VirtualizingStackPanel x:Name="customVPanel1" IsVirtualizing="True" Margin="2" 
+                                                Orientation="Vertical" 
+                                                Width="200"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
                         VirtualizationMode="Recycling"  
                                                 />
+                        -->
+                        <!--
+                        HorizontalScrollBarVisibility=Disabled important element.
+                        -->
+                        <vwp:VirtualizingWrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
@@ -22,12 +33,17 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
+    <Grid Width="Auto">
         <TreeView Margin="5" ItemsSource="{Binding}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  Width="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                   VirtualizingStackPanel.IsVirtualizing="True"
-                  VirtualizingStackPanel.VirtualizationMode="Recycling"
+            VirtualizingStackPanel.VirtualizationMode="Recycling"
                   >
+            <!--
+            VirtualizingStackPanel.VirtualizationMode="Recycling"
+            -->
             <TreeView.Background>
                 <LinearGradientBrush>
                     <GradientStop Offset="0" Color="AliceBlue"/>
