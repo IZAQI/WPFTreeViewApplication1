@@ -1,7 +1,8 @@
 ﻿using System;
 
 using System.Collections.Generic;
-
+using System.Globalization;
+using System.IO;
 using System.Linq;
 
 using System.Text;
@@ -120,6 +121,54 @@ namespace WpfTreeViewApplication1
             DataContext = stateList;
         }
 
+
+
+        // TODO TEMP Snapshot
+        /// <summary>
+        /// https://msdn.microsoft.com/ja-jp/library/system.windows.media.imaging.rendertargetbitmap(v=vs.110).aspx
+        /// http://qiita.com/hugo-sb/items/894914f6bbe224a45d49
+        /// </summary>
+        private void SaveImage()
+        {
+            Image myImage = new Image();
+            FormattedText text = new FormattedText("ABC",
+                    new CultureInfo("en-us"),
+                    FlowDirection.LeftToRight,
+                    new Typeface(this.FontFamily, FontStyles.Normal, FontWeights.Normal, new FontStretch()),
+                    this.FontSize,
+                    this.Foreground);
+
+            //DrawingVisual drawingVisual = new DrawingVisual();
+            //DrawingContext drawingContext = drawingVisual.RenderOpen();
+            //drawingContext.DrawText(text, new Point(2, 2));
+            //drawingContext.Close();
+            var drawingVisual = this;
+
+            RenderTargetBitmap bmp = new RenderTargetBitmap((int)ActualWidth, (int)ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            bmp.Render(drawingVisual);
+            myImage.Source = bmp;
+
+            // Add Image to the UI
+            //StackPanel myStackPanel = new StackPanel();
+            //myStackPanel.Children.Add(myImage);
+            //this.Content = myStackPanel;
+
+            string path = "image.png";
+
+            // filesave
+            // 出力用の FileStream を作成する
+            using (var os = new FileStream(path, FileMode.Create))
+            {
+                // 変換したBitmapをエンコードしてFileStreamに保存する。
+                // BitmapEncoder が指定されなかった場合は、PNG形式とする。
+                var encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bmp));
+                encoder.Save(os);
+            }
+        }
+
+
+
     }
 
 
@@ -166,6 +215,7 @@ namespace WpfTreeViewApplication1
 
         public List<ChildItem> Children
         { get; set; }
+
 
     }
 
