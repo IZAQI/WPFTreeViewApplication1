@@ -23,7 +23,10 @@
                         <!--
                         HorizontalScrollBarVisibility=Disabled important element.
                         -->
+                        <!--
                         <vwp:VirtualizingWrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"/>
+                        -->
+                        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
@@ -39,7 +42,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   VirtualizingStackPanel.IsVirtualizing="True"
-            VirtualizingStackPanel.VirtualizationMode="Recycling"
+                VirtualizingStackPanel.VirtualizationMode="Recycling"
                   >
             <!--
             VirtualizingStackPanel.VirtualizationMode="Recycling"

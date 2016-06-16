@@ -94,22 +94,15 @@ namespace WpfTreeViewApplication1
             for(int i = 0; i < 500; i++)
             {
                 List<ChildItem> childList = new List<ChildItem>();
-                childList.Add(new ChildItem("1"));
-                childList.Add(new ChildItem("2"));
-                childList.Add(new ChildItem("3"));
-                childList.Add(new ChildItem("4"));
-                childList.Add(new ChildItem("5"));
-                childList.Add(new ChildItem("6"));
-                childList.Add(new ChildItem("7"));
-                childList.Add(new ChildItem("8"));
-                childList.Add(new ChildItem("9"));
-                childList.Add(new ChildItem("10"));
-                childList.Add(new ChildItem("11"));
-                childList.Add(new ChildItem("12"));
+
+                for (int j = 0; j < 100; j++)
+                {
+                    childList.Add(new ChildItem(Convert.ToString(j)));
+                }
 
                 ParentItem parent = new ParentItem();
 
-                parent.Name = "1";
+                parent.Name = Convert.ToString(i);
                 parent.NickName = "1";
                 parent.Population = 0;
                 parent.Children = childList;
